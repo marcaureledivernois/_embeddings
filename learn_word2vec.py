@@ -38,3 +38,20 @@ print (sentences[11])
 sentences = [preprocess(sentence) for sentence in sentences]
 print (sentences[11])
 
+EMBEDDING_DIM = 100
+WINDOW = 5
+MIN_COUNT = 3 # Ignores all words with total frequency lower than this
+SKIP_GRAM = 1 # 0 = CBOW
+NEGATIVE_SAMPLING = 20
+
+w2v = Word2Vec(
+    sentences=sentences, size=EMBEDDING_DIM,
+    window=WINDOW, min_count=MIN_COUNT,
+    sg=SKIP_GRAM, negative=NEGATIVE_SAMPLING)
+print (w2v)
+
+w2v.wv.get_vector("potter")
+w2v.wv.most_similar(positive="scar", topn=5)
+
+w2v.wv.save_word2vec_format("model.bin", binary=True)
+w2v = KeyedVectors.load_word2vec_format("model.bin", binary=True)
