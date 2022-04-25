@@ -1,4 +1,4 @@
-# Embeddings
+# Word embeddings
 
 ## Overview
 
